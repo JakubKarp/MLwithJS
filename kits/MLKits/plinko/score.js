@@ -10,8 +10,9 @@ function runAnalysis() {
   const testSetSize = 100;
   // const k = 10; // do sprawdzania, który feature jest najważniejszy
 
+  // do sprawdzania, który feature jest najważniejszy
   // żeby przebadać, który feature/parametr jest najbardziej istotny, przenosimy poniższą linijkę do kodu niżej
-  // const [testSet, trainingSet] = splitDataset(minMax(outputs, 3), testSetSize)
+  const [testSet, trainingSet] = splitDataset(minMax(outputs, 3), testSetSize)
 
   // accuracy - niżej zapisane lodashem
   // let numberCorrect = 0;
@@ -27,10 +28,10 @@ function runAnalysis() {
   _.range(1, 20).forEach(k => { // sprawdzamy dla różnych k (rezygnujemy z badania k, ustawiamy na 10 bo to optymalne)
     // _.range(0, 3).forEach(feature => { // do sprawdzania, który feature jest najważniejszy sprawdzamy dla różnych feature/parametrów
     // const data = _.map(outputs, row => [row[feature], _.last(row)]) // do sprawdzania, który feature jest najważniejszy
-    const [testSet, trainingSet] = splitDataset(minMax(outputs, 3), testSetSize)
     // const [testSet, trainingSet] = splitDataset(minMax(data, 1), testSetSize) // do sprawdzania, który feature jest najważniejszy
     const accuracy = _.chain(testSet)
-    .filter(testPoint => knn(trainingSet, _.initial(testPoint), k) === _.last(testPoint)) // sprawdzamy na ile wyniki zgadzają się z testowym wiadrem
+    // .filter(testPoint => knn(trainingSet, _.initial(testPoint), k) === _.last(testPoint)) // do sprawdzania, który feature jest najważniejszy
+    .filter(testPoint => knn(trainingSet, _.initial(testPoint), k) === testPoint[3]) // sprawdzamy na ile wyniki zgadzają się z testowym wiadrem
     // ale wyniki nie do końca się zgadzają z testowym wiadrem, więc musimy określić procent
     // sprawdzamy więc, kiedy wynik trreningu zgadza się z testowym wiadrem
     .size() // bierze długość tablicy
