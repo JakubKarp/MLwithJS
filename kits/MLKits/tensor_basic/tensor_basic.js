@@ -8,6 +8,7 @@ secondData // [4,5,6] - tensory się nie zmienią po operacji add
 data.sub(secondData) // odejmie [-3,-3,-3]
 data.mul(secondData) // multiplikuje [4, 10, 18]
 data.div(secondData) // dzieli [0.25, 0.4, 0.5]
+data.pow(2) // potęguje [1, 4, 9]
 // jeżeli shapes są niezgodne, nie zrobimy żadnej powyższej operacji
 
 
@@ -60,6 +61,7 @@ data2d.get(0, 0) // da 10 (row, column)
 data2d.get(0, 1) // da 20 (row, column)
 data2d.get(1, 2) // da 60 (row, column)
 // data2d.set() - nie ma takiej funkcji. nie można dodać do istniejącego tensora nic.
+// !!!! obecnie nie ma get(0), jest: arraySync()[0]
 
 
 
