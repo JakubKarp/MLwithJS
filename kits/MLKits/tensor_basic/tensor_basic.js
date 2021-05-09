@@ -117,3 +117,15 @@ data.sum(1, true).shape // [3, 1] argument true robi keep dimension
 data.sum(1, true).concat(jump, 1) // [ [6, 1, 4], [15, 1, 4] ] doda i wstawi na początek
 data.sum(1).expandDims().shape // [1, 3]
 data.sum(1).expandDims(1).shape // [3, 1] robi to samo co sum(1, true)
+
+
+// odchylenie standardowe
+const data =  tf.tensor([
+  [1,2], 
+  [3,4],
+  [5,6]
+]) // shape: [3,3]
+const {mean, variance} = tf.moments(data, 0) // 1 liczy w rowach, 0 liczy w kolumnach
+// mean to średnia, w tym przypadku średnia z kolumn. Pierwsza kolumna: 1+3+5 = 9. 9/3 = 3
+// variance - również z kolumny pierwszej: 2.6666
+data.sub(mean).div(variance.pow(.5)) // odchylenie standardowe
